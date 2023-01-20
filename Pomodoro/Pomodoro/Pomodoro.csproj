@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>Pomodoro.ico</ApplicationIcon>
+    <Win32Resource />
+    <Authors>Pomodoro / unikuma</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pomodoro.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LivetCask" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pomodoro.ico" />
+  </ItemGroup>
+
+</Project>
