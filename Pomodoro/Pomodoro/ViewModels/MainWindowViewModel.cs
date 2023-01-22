@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
@@ -41,7 +42,7 @@ namespace Pomodoro.ViewModels
 			MessageTimer.Stop();
 
 			if (MessageBox.Show("作業お疲れ様です！また使ってくださいね！", "Pomodoro", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.No)
-				MessageBox.Show("；；", "Pomodoro", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("(´；ω；`)", "Pomodoro", MessageBoxButton.OK, MessageBoxImage.None);
 		}
 
 		private void MainTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -50,6 +51,11 @@ namespace Pomodoro.ViewModels
 				TimeLeft = TimeSpan.FromSeconds(--Pomodoro).ToString("mm\\：ss");
 			else
 				TimeLeft = TimeSpan.FromSeconds(--Break).ToString("mm\\：ss");
+
+			if (StemsAngle >= 354)
+				StemsAngle = 0;
+			else
+				StemsAngle += 6;
 
 			if (Pomodoro == 0)
 			{
@@ -66,8 +72,7 @@ namespace Pomodoro.ViewModels
 
 		private void MessageTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			string[] Message = { "ちなみに作者はペペロンチーノがすき", $"今は集中、それがだいじ", "Pomodoro Technique",
-								 "test" };
+			string[] Message = { "ちなみに作者はペペロンチーノがすき", $"今は集中、それがだいじ", "Pomodoro Technique" };
 
 			PomodoroMes = Message[new Random().Next(Message.Length)];
 		}
@@ -120,6 +125,27 @@ namespace Pomodoro.ViewModels
 		{
 			get => _BackgroundColor;
 			set => RaisePropertyChangedIfSet(ref _BackgroundColor, value);
+		}
+
+
+		private bool _TopMost = false;
+		public bool TopMost
+		{
+			get => _TopMost;
+			set => RaisePropertyChangedIfSet(ref _TopMost, value);
+		}
+
+		private double _StemsAngle = 0;
+		public double StemsAngle
+		{
+			get => _StemsAngle;
+			set => RaisePropertyChangedIfSet(ref _StemsAngle, value);
+		}
+
+		public void ChangeTopMost()
+		{
+			TopMost = !TopMost;
+			SystemSounds.Beep.Play();
 		}
 	}
 }

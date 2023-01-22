@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Pomodoro.ico" />
+    <None Remove="tomatostems.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <Resource Include="Pomodoro.ico" />
+    <Resource Include="tomatostems.png" />
   </ItemGroup>
 
 </Project>
