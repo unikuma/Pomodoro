@@ -25,12 +25,16 @@
 			<l:LivetCallMethodAction MethodName="ChangeTopMost" MethodTarget="{Binding}"/>
 		</behaviors:KeyTrigger>
 
+		<behaviors:KeyTrigger Modifiers="Ctrl" Key="H">
+			<l:LivetCallMethodAction MethodName="HiddenOtherControls" MethodTarget="{Binding}"/>
+		</behaviors:KeyTrigger>
+
 	</behaviors:Interaction.Triggers>
 
 	<Grid>
-		<Image Source="pack://application:,,,/tomatostems.png" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="63,-55,60,0" RenderTransformOrigin="0.5,0.5">
+		<Image  Visibility="{Binding IsHiddenControl}" Source="pack://application:,,,/TomatoStem.png" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="63,-55,60,0" RenderTransformOrigin="0.5,0.5">
 			<Image.RenderTransform>
-				<RotateTransform Angle="{Binding StemsAngle}"/>
+				<RotateTransform Angle="{Binding StemAngle}"/>
 			</Image.RenderTransform>
 			<Image.Effect>
 				<DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
@@ -39,16 +43,16 @@
 
 		<Label Content="{Binding TimeLeft}" Foreground="White" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50"/>
 
-		<TextBlock Text="{Binding PomodoroMes}" TextWrapping="Wrap" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0"/>
+		<TextBlock Visibility="{Binding IsHiddenControl}" Text="{Binding PomodoroMes}" TextWrapping="Wrap" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0"/>
 
-		<Image Source="pack://application:,,,/Pomodoro.ico" Margin="10,0,0,10" HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Bottom">
+		<Image Visibility="{Binding IsHiddenControl}" Source="pack://application:,,,/Pomodoro.ico" Margin="10,0,0,10" HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Bottom">
 			<Image.Effect>
 				<DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
 			</Image.Effect>
 		</Image>
 
-		<TextBlock Text="{Binding TomatoCount, StringFormat=×\{0\}}" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="63,0,0,15"/>
-		<TextBlock Text="Copyright 2023 unikuma" Opacity=".5" FontSize="16" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
+		<TextBlock Visibility="{Binding IsHiddenControl}" Text="{Binding TomatoCount, StringFormat=×\{0\}}" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="63,0,0,15"/>
+		<TextBlock  Visibility="{Binding IsHiddenControl}" Text="Copyright 2023 unikuma" Opacity=".5" FontSize="16" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
 
 	</Grid>
 </Window>

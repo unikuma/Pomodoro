@@ -36,15 +36,6 @@ namespace Pomodoro.ViewModels
 			MessageTimer_Elapsed(null, null);
 		}
 
-		public new void Dispose()
-		{
-			MainTimer.Stop();
-			MessageTimer.Stop();
-
-			if (MessageBox.Show("作業お疲れ様です！また使ってくださいね！", "Pomodoro", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.No)
-				MessageBox.Show("(´；ω；`)", "Pomodoro", MessageBoxButton.OK, MessageBoxImage.None);
-		}
-
 		private void MainTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
 			if (PomodoroSwitch)
@@ -52,10 +43,7 @@ namespace Pomodoro.ViewModels
 			else
 				TimeLeft = TimeSpan.FromSeconds(--Break).ToString("mm\\：ss");
 
-			if (StemsAngle >= 354)
-				StemsAngle = 0;
-			else
-				StemsAngle += 6;
+			StemAngle = StemAngle >= 354 ? 0 : StemAngle + 6;
 
 			if (Pomodoro == 0)
 			{
@@ -80,8 +68,8 @@ namespace Pomodoro.ViewModels
 		private System.Timers.Timer MainTimer = new System.Timers.Timer();
 		private System.Timers.Timer MessageTimer = new System.Timers.Timer();
 
-		private int Pomodoro = 5;
-		private int Break = 5;
+		private int Pomodoro = 1500;
+		private int Break = 300;
 
 		private int _TomatoCount = 0;
 		public int TomatoCount
@@ -135,11 +123,18 @@ namespace Pomodoro.ViewModels
 			set => RaisePropertyChangedIfSet(ref _TopMost, value);
 		}
 
-		private double _StemsAngle = 0;
-		public double StemsAngle
+		private Visibility _IsHiddenControl = Visibility.Visible;
+		public Visibility IsHiddenControl
 		{
-			get => _StemsAngle;
-			set => RaisePropertyChangedIfSet(ref _StemsAngle, value);
+			get => _IsHiddenControl;
+			set => RaisePropertyChangedIfSet(ref _IsHiddenControl, value);
+		}
+
+		private double _StemAngle = 0;
+		public double StemAngle
+		{
+			get => _StemAngle;
+			set => RaisePropertyChangedIfSet(ref _StemAngle, value);
 		}
 
 		public void ChangeTopMost()
@@ -147,5 +142,7 @@ namespace Pomodoro.ViewModels
 			TopMost = !TopMost;
 			SystemSounds.Beep.Play();
 		}
+
+		public void HiddenOtherControls() => IsHiddenControl = IsHiddenControl == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
 	}
 }

@@ -121,7 +121,7 @@
   <data name="Pomodoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pomodoro.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tomatostems" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\tomatostems.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TomatoStem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\tomatostem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

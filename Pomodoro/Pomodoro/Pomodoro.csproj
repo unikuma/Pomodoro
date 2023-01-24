@@ -10,9 +10,14 @@
     <Authors>Pomodoro / unikuma</Authors>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Pomodoro.ico" />
-    <None Remove="tomatostems.png" />
+    <None Remove="TomatoStem.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +26,7 @@
 
   <ItemGroup>
     <Resource Include="Pomodoro.ico" />
-    <Resource Include="tomatostems.png" />
+    <Resource Include="TomatoStem.png" />
   </ItemGroup>
 
 </Project>
