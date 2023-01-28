@@ -84,8 +84,8 @@ namespace Pomodoro.ViewModels
 		private System.Timers.Timer MainTimer = new System.Timers.Timer();
 		private System.Timers.Timer MessageTimer = new System.Timers.Timer();
 
-		private int Pomodoro = 15;
-		private int Break = 3;
+		private int Pomodoro = 1500;
+		private int Break = 300;
 
 		private int _TomatoCount = 0;
 		public int TomatoCount
