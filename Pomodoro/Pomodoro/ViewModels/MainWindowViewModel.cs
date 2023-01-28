@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -38,38 +39,53 @@ namespace Pomodoro.ViewModels
 
 		private void MainTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			if (PomodoroSwitch)
-				TimeLeft = TimeSpan.FromSeconds(--Pomodoro).ToString("mm\\：ss");
-			else
-				TimeLeft = TimeSpan.FromSeconds(--Break).ToString("mm\\：ss");
+			Parallel.Invoke(UpdateTimeLeft, ChangeStemAngle, CheckTimeLeft);
 
-			StemAngle = StemAngle >= 354 ? 0 : StemAngle + 6;
-
-			if (Pomodoro == 0)
+			void UpdateTimeLeft()
 			{
-				PomodoroSwitch = false;
-				Pomodoro = 1500;
+				if (PomodoroSwitch)
+					TimeLeft = TimeSpan.FromSeconds(--Pomodoro).ToString("mm\\：ss");
+				else
+					TimeLeft = TimeSpan.FromSeconds(--Break).ToString("mm\\：ss");
 			}
-			else if (Break == 0)
+
+			void ChangeStemAngle()
 			{
-				PomodoroSwitch = true;
-				Break = 300;
-				TomatoCount++;
+				StemAngle = StemAngle >= 354 ? 0 : StemAngle + 6;
+			}
+
+			void CheckTimeLeft()
+			{
+				if (Pomodoro == 0)
+				{
+					PomodoroSwitch = false;
+					Pomodoro = 1500;
+					if (System.IO.File.Exists("BreakOn.wav")) new SoundPlayer("BreakOn.wav").Play();
+				}
+				else if (Break == 0)
+				{
+					PomodoroSwitch = true;
+					Break = 300;
+					TomatoCount++;
+					if (System.IO.File.Exists("PomodoroOn.wav")) new SoundPlayer("PomodoroOn.wav").Play();
+				}
 			}
 		}
 
 		private void MessageTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			string[] Message = { "ちなみに作者はペペロンチーノがすき", $"今は集中、それがだいじ", "Pomodoro Technique" };
-
-			PomodoroMes = Message[new Random().Next(Message.Length)];
+			if (IsHiddenControl != Visibility.Hidden)
+			{
+				string[] Message = { "ちなみに作者はペペロンチーノがすき", $"今は集中、それがだいじ", "Pomodoro Technique" };
+				PomodoroMes = Message[new Random().Next(Message.Length)];
+			}
 		}
 
 		private System.Timers.Timer MainTimer = new System.Timers.Timer();
 		private System.Timers.Timer MessageTimer = new System.Timers.Timer();
 
-		private int Pomodoro = 1500;
-		private int Break = 300;
+		private int Pomodoro = 15;
+		private int Break = 3;
 
 		private int _TomatoCount = 0;
 		public int TomatoCount
