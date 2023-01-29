@@ -76,7 +76,9 @@ namespace Pomodoro.ViewModels
 		{
 			if (IsHiddenControl != Visibility.Hidden)
 			{
-				string[] Message = { "ちなみに作者はペペロンチーノがすき", $"今は集中、それがだいじ", "Pomodoro Technique" };
+				string[] Message = { "ちなみに作者はペペロンチーノがすき", "今は集中、それがだいじ", "休憩もたまには必要",
+									 $"トマト{TomatoCount}個＝{TimeSpan.FromMinutes(30 * TomatoCount).ToString("mm")}分",
+									 "ポモドーロも美味しいよね"};
 				PomodoroMes = Message[new Random().Next(Message.Length)];
 			}
 		}

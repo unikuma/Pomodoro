@@ -41,9 +41,9 @@
 			</Image.Effect>
 		</Image>
 
-		<Label Content="{Binding TimeLeft}" Foreground="White" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50"/>
-
 		<TextBlock Visibility="{Binding IsHiddenControl}" Text="{Binding PomodoroMes}" TextWrapping="Wrap" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0"/>
+
+		<Label Content="{Binding TimeLeft}" Foreground="White" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50"/>
 
 		<Image Visibility="{Binding IsHiddenControl}" Source="pack://application:,,,/Pomodoro.ico" Margin="10,0,0,10" HorizontalAlignment="Left" Width="48" Height="48" VerticalAlignment="Bottom">
 			<Image.Effect>
